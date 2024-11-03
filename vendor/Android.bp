@@ -201,6 +201,12 @@ android_app_import {
     name: "MiuiCamera",
     owner: "xiaomi/miuicamera-zircon",
     apk: "proprietary/system/priv-app/MiuiCamera/MiuiCamera.apk",
+    overrides: [
+        "Aperture",
+        "Camera2",
+        "GoogleCamera",
+        "GoogleCameraGo",
+    ],
     certificate: "platform",
     dex_preopt: {
         enabled: false,
