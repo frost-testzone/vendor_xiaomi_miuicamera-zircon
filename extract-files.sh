@@ -61,7 +61,11 @@ fi
 
 function blob_fixup() {
     case "${1}" in
-        system/lib64/libcamera_algoup_jni.xiaomi.so|\
+        system/lib64/libcamera_algoup_jni.xiaomi.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libgui_shim_miuicamera.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim_miuicamera.so" "${2}"
+            "${SIGSCAN}" -p "08 AD 40 F9" -P "08 A9 40 f9" -f "${2}"
+            ;;
         system/lib64/libcamera_mianode_jni.xiaomi.so|\
         system/lib64/libcamera_ispinterface_jni.xiaomi.so)
             [ "$2" = "" ] && return 0
