@@ -9,3 +9,4 @@ allow platform_app app_data_file:file execute;
 get_prop(platform_app, vendor_camera_skynet_prop)
 get_prop(platform_app, vendor_mtk_camera_prop)
 get_prop(platform_app, vendor_panel_info_prop)
+get_prop(platform_app, vendor_persist_camera_prop)

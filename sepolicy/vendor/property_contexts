@@ -1,0 +1,2 @@
+# Device
+persist.vendor.camera.privapp.list u:object_r:vendor_persist_camera_prop:s0
