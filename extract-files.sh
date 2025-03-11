@@ -73,7 +73,7 @@ function blob_fixup() {
             ;;
         system/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so)
             [ "$2" = "" ] && return 0
-            "${PATCHELF}" --replace-needed "android.hardware.graphics.common-V4-ndk.so" "android.hardware.graphics.common-V5-ndk.so" "${2}"
+            "${PATCHELF}" --replace-needed "android.hardware.graphics.common-V4-ndk.so" "android.hardware.graphics.common-V6-ndk.so" "${2}"
             ;;
         *)
             return 1
