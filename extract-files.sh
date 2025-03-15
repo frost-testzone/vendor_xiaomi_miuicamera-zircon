@@ -61,6 +61,10 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        system/lib64/libdmabufheap.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libprocessgroup_shim.so" "${2}" || "${PATCHELF}" --add-needed "libprocessgroup_shim.so" "${2}"
+            ;;
         system/lib64/libcamera_algoup_jni.xiaomi.so)
             [ "$2" = "" ] && return 0
             grep -q "libgui_shim_miuicamera.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim_miuicamera.so" "${2}"

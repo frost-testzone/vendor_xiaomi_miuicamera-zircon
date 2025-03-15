@@ -57,6 +57,22 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
+	name: "libdmabufheap",
+	owner: "xiaomi/miuicamera-xaga",
+	strip: {
+		none: true,
+	},
+	target: {
+		android_arm64: {
+			srcs: ["proprietary/system/lib64/libdmabufheap.so"],
+			shared_libs: ["libprocessgroup_shim", "liblog", "libc++", "libc", "libm", "libdl", ],
+		},
+	},
+	compile_multilib: "64",
+	prefer: true,
+}
+
+cc_prebuilt_library_shared {
 	name: "libmtkisp_metadata_sys",
 	owner: "xiaomi/miuicamera-xaga",
 	strip: {
