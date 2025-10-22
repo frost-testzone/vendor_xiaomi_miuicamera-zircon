@@ -1,6 +1,6 @@
-# All unpinned blobs below are extracted from xaga V816.0.3.0.ULOCNXM
+# All unpinned blobs below are extracted from xaga OS2.0.7.0.ULOCNXM
 
-product/priv-app/MiuiCamera/MiuiCamera.apk:system/priv-app/MiuiCamera/MiuiCamera.apk|5e299141c8d0c2e121c6f900313d7ced8729dec5
+product/priv-app/MiuiCamera/MiuiCamera.apk:system/priv-app/MiuiCamera/MiuiCamera.apk
 system/lib64/libdmabufheap.so
 system_ext/lib64/libcamera_algoup_jni.xiaomi.so:system/lib64/libcamera_algoup_jni.xiaomi.so
 system_ext/lib64/libcamera_ispinterface_jni.xiaomi.so:system/lib64/libcamera_ispinterface_jni.xiaomi.so

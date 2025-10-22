@@ -1,0 +1,154 @@
+From 4a57d04971def4d844c9a20ffe570b18d5a297b5 Mon Sep 17 00:00:00 2001
+From: Arian <arian.kulmer@web.de>
+Date: Sat, 26 Apr 2025 17:58:26 +0200
+Subject: [PATCH 2/4] CameraConstructCompat: Add Ultra HDR heic configurations
+ to StreamConfigurationMap constructor
+
+Commit "Add HEIC_ULTRAHDR image format"[1] added three new parameters to
+the constructor of StreamConfigurationMap.
+Since HyperOS 2, xiaomi has added these methods but guarded them for sdk
+36 and above.
+Android 15 QPR2 (still sdk 35) added these methods already, so enforce
+the usage of the new constructor.
+
+[1]:
+https://github.com/LineageOS/android_frameworks_base/commit/ba41b51131af923a797480a6e707d390d39852c2
+
+Change-Id: I884ba50a2f468060b841d464b6b9e33e846b45d5
+---
+ .../camera2/CameraConstructCompat.smali       | 57 ++++++++++++++++---
+ 1 file changed, 50 insertions(+), 7 deletions(-)
+
+diff --git a/smali_classes4/com/xiaomi/compat/camera2/CameraConstructCompat.smali b/smali_classes4/com/xiaomi/compat/camera2/CameraConstructCompat.smali
+index 60420196..81114dcd 100644
+--- a/smali_classes4/com/xiaomi/compat/camera2/CameraConstructCompat.smali
++++ b/smali_classes4/com/xiaomi/compat/camera2/CameraConstructCompat.smali
+@@ -49,7 +49,7 @@
+ .end method
+ 
+ .method public static getStreamConfigurationMap([Landroid/hardware/camera2/params/StreamConfiguration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfiguration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfiguration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfiguration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/StreamConfigurationDuration;[Landroid/hardware/camera2/params/HighSpeedVideoConfiguration;Landroid/hardware/camera2/params/ReprocessFormatsMap;Z)Landroid/hardware/camera2/params/StreamConfigurationMap;
+-    .locals 23
++    .locals 26
+ 
+     const-string v1, "CameraConstructCompat"
+ 
+@@ -61,7 +61,15 @@
+ 
+     move-result v2
+ 
+-    const/16 v5, 0x12
++    # length of the parameters
++    const/16 v5, 0x15
++
++    # heicUltraHDRStallDurations
++    const/16 v23, 0x11
++    # heicUltraHDRMinFrameDurations
++    const/16 v24, 0x10
++    # heicUltraHDRConfigurations
++    const/16 v25, 0xf
+ 
+     const/16 v6, 0xe
+ 
+@@ -91,7 +99,8 @@
+ 
+     const/16 v19, 0x0
+ 
+-    const/16 v3, 0xf
++    # index of highSpeedVideoConfigurations
++    const/16 v3, 0x12
+ 
+     const/4 v4, 0x1
+ 
+@@ -160,19 +169,31 @@
+ 
+     aput-object v22, v2, v6
+ 
++    # heicUltraHDRConfigurations
++    const-class v22, [Landroid/hardware/camera2/params/StreamConfiguration;
++    aput-object v22, v2, v25
++
++    # heicUltraHDRMinFrameDurations
++    const-class v22, [Landroid/hardware/camera2/params/StreamConfigurationDuration;
++    aput-object v22, v2, v24
++
++    # heicUltraHDRStallDurations
++    const-class v22, [Landroid/hardware/camera2/params/StreamConfigurationDuration;
++    aput-object v22, v2, v23
++
+     const-class v22, [Landroid/hardware/camera2/params/HighSpeedVideoConfiguration;
+ 
+     aput-object v22, v2, v3
+ 
+     const-class v22, Landroid/hardware/camera2/params/ReprocessFormatsMap;
+ 
+-    const/16 v21, 0x10
++    const/16 v21, 0x13
+ 
+     aput-object v22, v2, v21
+ 
+     sget-object v22, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
+ 
+-    const/16 v20, 0x11
++    const/16 v20, 0x14
+ 
+     aput-object v22, v2, v20
+ 
+@@ -230,6 +251,18 @@
+ 
+     aput-object v22, v2, v9
+ 
++    # heicUltraHDRConfigurations
++    const-class v22, [Landroid/hardware/camera2/params/StreamConfiguration;
++    aput-object v22, v2, v25
++
++    # heicUltraHDRMinFrameDurations
++    const-class v22, [Landroid/hardware/camera2/params/StreamConfigurationDuration;
++    aput-object v22, v2, v24
++
++    # heicUltraHDRStallDurations
++    const-class v22, [Landroid/hardware/camera2/params/StreamConfigurationDuration;
++    aput-object v22, v2, v23
++
+     const-class v22, [Landroid/hardware/camera2/params/HighSpeedVideoConfiguration;
+ 
+     aput-object v22, v2, v8
+@@ -303,9 +336,16 @@
+ 
+     aput-object v22, v2, v6
+ 
++    # heicUltraHDRConfigurations
++    aput-object v22, v2, v23
++    # heicUltraHDRMinFrameDurations
++    aput-object v22, v2, v24
++    # heicUltraHDRStallDurations
++    aput-object v22, v2, v25
++
+     aput-object p12, v2, v3
+ 
+-    const/16 v3, 0x10
++    const/16 v3, 0x13
+ 
+     aput-object p13, v2, v3
+ 
+@@ -314,7 +354,7 @@
+ 
+     move-result-object v3
+ 
+-    const/16 v4, 0x11
++    const/16 v4, 0x14
+ 
+     aput-object v3, v2, v4
+ 
+@@ -326,6 +366,9 @@
+     goto :goto_1
+ 
+     :cond_2
++    # Length of the legacy array
++    const/16 v3, 0xf
++
+     new-array v2, v3, [Ljava/lang/Object;
+ 
+     aput-object p0, v2, v19
+-- 
+2.51.1.dirty
+
