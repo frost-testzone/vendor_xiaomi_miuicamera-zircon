@@ -4,13 +4,13 @@
 
 soong_namespace {
     imports: [
-        "vendor/xiaomi/miuicamera-xaga",
+        "vendor/xiaomi/miuicamera-zircon",
     ],
 }
 
 cc_prebuilt_library_shared {
     name: "libcamera_algoup_jni.xiaomi",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     strip: {
         none: true,
     },
@@ -42,7 +42,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libcamera_ispinterface_jni.xiaomi",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     strip: {
         none: true,
     },
@@ -84,7 +84,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "libcamera_mianode_jni.xiaomi",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     strip: {
         none: true,
     },
@@ -116,33 +116,8 @@ cc_prebuilt_library_shared {
 }
 
 cc_prebuilt_library_shared {
-    name: "libdmabufheap",
-    owner: "xiaomi/miuicamera-xaga",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: [
-                "proprietary/system/lib64/libdmabufheap.so",
-            ],
-            shared_libs: [
-                "libprocessgroup_shim",
-                "liblog",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    prefer: true,
-}
-
-cc_prebuilt_library_shared {
     name: "libmtkisp_metadata_sys",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     strip: {
         none: true,
     },
@@ -168,7 +143,7 @@ cc_prebuilt_library_shared {
 
 cc_prebuilt_library_shared {
     name: "vendor.mediatek.hardware.camera.isphal-V1-ndk",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     strip: {
         none: true,
     },
@@ -195,7 +170,7 @@ cc_prebuilt_library_shared {
 cc_prebuilt_library_shared {
     name: "vendor.mediatek.hardware.camera.isphal@1.0_system",
     stem: "vendor.mediatek.hardware.camera.isphal@1.0",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     strip: {
         none: true,
     },
@@ -224,7 +199,7 @@ cc_prebuilt_library_shared {
 
 android_app_import {
     name: "MiuiCamera",
-    owner: "xiaomi/miuicamera-xaga",
+    owner: "xiaomi/miuicamera-zircon",
     apk: "proprietary/system/priv-app/MiuiCamera/MiuiCamera.apk",
     certificate: "platform",
     dex_preopt: {

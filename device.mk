@@ -5,7 +5,7 @@
 #
 
 # Inherit from the proprietary version
-$(call inherit-product, vendor/xiaomi/miuicamera-xaga/vendor/vendor-vendor.mk)
+$(call inherit-product, vendor/xiaomi/miuicamera-zircon/vendor/vendor-vendor.mk)
 
 # Public libraries
 PRODUCT_COPY_FILES += \
