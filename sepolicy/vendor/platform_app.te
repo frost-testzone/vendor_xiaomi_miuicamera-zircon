@@ -6,4 +6,6 @@ allow platform_app apusys_device:chr_file rw_file_perms;
 allow platform_app app_data_file:file execute;
 
 # Properties
+get_prop(platform_app, vendor_camera_skynet_prop)
 get_prop(platform_app, vendor_mtk_camera_prop)
+get_prop(platform_app, vendor_panel_info_prop)
