@@ -1,4 +1,4 @@
-# All unpinned blobs below are extracted from zircon OS2.0.206.0.VNOMIXM
+# All unpinned blobs below are extracted from zircon OS2.0.207.0.VNOMIXM
 # MiuiCamera from zircon OS2.0.9.0.VNOMIXM
 
 product/priv-app/MiuiCamera/MiuiCamera.apk:system/priv-app/MiuiCamera/MiuiCamera.apk|b244a721f0b38856151093931e5ba2a188a3ead8
