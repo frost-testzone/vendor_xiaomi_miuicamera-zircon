@@ -35,7 +35,7 @@ blob_fixups: blob_fixups_user_type = {
     ('system/lib64/libcamera_algoup_jni.xiaomi.so', 'system/lib64/libcamera_mianode_jni.xiaomi.so', 'system/lib64/libcamera_ispinterface_jni.xiaomi.so'): blob_fixup()
         .add_needed('libgui_shim_miuicamera.so'),
     'system/lib64/vendor.mediatek.hardware.camera.isphal-V1-ndk.so': blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V6-ndk.so'),
+        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
 }  # fmt: skip
 
 module = ExtractUtilsModule(
